@@ -6,9 +6,6 @@ from firebase_admin import credentials, db
 from formLogin import LoginForm
 from formRegister import RegisterForm
 
-from addVar import Add
-from getAdd import addObj
-
 from postVar import Post
 from postVar import Contact
 from postVar import User_recipe
@@ -43,17 +40,6 @@ def home():
         if count == 2:
             break
 
-    add = Add(request.form)
-    if request.method == 'POST':
-        header = add.header.data
-        content = add.content.data
-        adds = addObj(header, content)
-        add_db = root.child('articles')
-        add_db.push({
-            'header': adds.get_header(),
-            'content': adds.get_content(),
-        })
-        return redirect(url_for("/"))
     try:
         userId = session["logged_in"]
     except KeyError:
@@ -66,9 +52,9 @@ def home_health():
     try:
         userId = session["logged_in"]
     except KeyError:
-        return render_template("home_health.html", add=add)
+        return render_template("home_health.html")
     users = root.child("users/" + userId).get()
-    return render_template('home_health.html', add=add, user=users)
+    return render_template('home_health.html', user=users)
 
 #RECIPE
 @app.route('/recipe')

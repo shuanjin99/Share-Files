@@ -181,16 +181,19 @@
                             <h4 class="modal-title">Edit Article</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <form method="POST" action="">
-                                    <div>
-                                        {{ render_field(add.header, class='form-control', id='article_header', required='required') }}
-                                    </div>
-                                    <div>
-                                        {{ render_field(add.content, class='form-control', id='article_header', required='required') }}
-                                    </div>
-                                </form>
-                            </div>
+                            <label class="form-group" id="headr">
+                                <div>
+                                    <p> Header: </p>
+                                    <input type="text" class="form-control"/>
+                                </div>
+                            </label>
+                            <br/>
+                            <label class="form-group">
+                                <div class="form-group">
+                                    Content:
+                                    <textarea class="form-control" rows="16"></textarea>
+                                </div>
+                            </label>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Update</button>
